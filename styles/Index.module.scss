@@ -1,0 +1,68 @@
+main.container {
+  position: relative;
+  font: SF Pro Display normal;
+}
+
+.itemsContainer {
+  border-radius: 0.9375em;
+  background-color: #131313;
+  position: absolute;
+
+  .itemList {
+    margin-top: 2.25em;
+    width: 10.5281em;
+    padding: 0;
+  }
+
+  .item {
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.5em 0.7156em 0.4687em 0.8125em;
+    margin-bottom: 0.7812em;
+    color: #fff;
+    background-color: #232323;
+    border-radius: 0.2931em;
+
+    font-size: 1.0625em;
+    font-weight: 400;
+    line-height: 1.2681em;
+  }
+}
+
+.filtersContainer {
+  height: 17.1875em;
+  width: 14.25em;
+  left: 2.5625em;
+  top: 2.6875em;
+  padding-top: 1.5em;
+  padding-left: 1.875em;
+}
+
+.filtersItem {
+  height: 2.3437em;
+}
+
+.filtersHeading {
+  width: 9.875em;
+  padding-bottom: 0.6875em;
+  border-bottom: solid 1px;
+  border-color: #cbcbcb;
+
+  color: #a5a5a5;
+  font: 1em SF Pro Display, normal;
+  font-weight: 300;
+  line-height: 1.4918em;
+}
+
+.dropdownMenu {
+  width: 60vw;
+  left: 14.8125em;
+  top: 0;
+  z-index: 1;
+  padding: 1em;
+}
+.dropdownItem {
+  margin-right : 1em;
+}
