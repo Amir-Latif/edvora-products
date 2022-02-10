@@ -8,3 +8,16 @@ export interface product {
   time: string;
   image: string;
 }
+
+export interface carouselProps {
+  filteredProducts: product[];
+  brandList: string[];
+}
+
+export interface carouselState {
+  first: number;
+  second: number;
+  displayedList: product[];
+  desktopView: boolean;
+  filteredProducts : product[]
+}

@@ -61,11 +61,15 @@
 
 .dropdownMenu {
   position: absolute;
-  width: 60vw;
-  left: 18em;
+  width: 80vw;
+  left: 2em;
   top: 2.6875em;
   z-index: 1;
   padding: 1em;
+  @media only screen and (min-width: 770px) {
+    left: 16.5em;
+    width: 60vw;
+  }
 }
 .dropdownItem {
   margin-right: 1em;

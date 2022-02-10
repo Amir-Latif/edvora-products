@@ -22,31 +22,88 @@ const Home: NextPage<{ productList: product[] }> = ({ productList }) => {
     </svg>
   );
 
-  const [filteredList, setFilteredList] = useState([] as string[]);
+  function getList(item: string) {
+    let newList: Set<string> = new Set();
 
-  function filter(item: string) {
-    const filteredList: Set<string> = new Set();
     switch (item) {
       case "brand":
         productList.forEach((product) => {
-          filteredList.add(product.brand_name);
+          newList.add(product.brand_name);
         });
         break;
       case "state":
         productList.forEach((product) => {
-          filteredList.add(product.address.state);
+          newList.add(product.address.state);
         });
         break;
       case "city":
         productList.forEach((product) => {
-          filteredList.add(product.address.city);
+          newList.add(product.address.city);
         });
         break;
       default:
         break;
     }
+    return Array.from(newList);
+  }
 
-    return Array.from(filteredList);
+  const [filteredProducts, setFilteredProducts] = useState(productList);
+  const [brandList, setBrandList] = useState(getList("brand"));
+  const [stateList, setStateList] = useState(getList("state"));
+  const [cityList, setCityList] = useState(getList("city"));
+
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [dropDownMenu, setDropDownMenu] = useState([""]);
+
+  function filter(element: string) {
+    // Brand
+    if (dropDownMenu.join() === brandList.join()) {
+      // Update state list
+      let filteredByBrand = productList.filter((e) => e.brand_name === element);
+      let newStateList = new Set<string>();
+      filteredByBrand.forEach((e) => {
+        newStateList.add(e.address.state);
+      });
+      setStateList(Array.from(newStateList));
+
+      // update productList for Carousel
+      setFilteredProducts(productList.filter((p) => p.brand_name === element));
+
+      setBrandList([element]);
+      // State
+    } else if (dropDownMenu.join() === stateList.join()) {
+      // Update City list
+      let filteredByState = productList.filter(
+        (e) => e.address.state === element && brandList.includes(e.brand_name)
+      );
+      let newCityList = new Set<string>();
+      filteredByState.forEach((e) => {
+        newCityList.add(e.address.city);
+      });
+      setCityList(Array.from(newCityList));
+
+      // Update product list
+      setFilteredProducts(
+        productList.filter(
+          (p) =>
+            brandList.includes(p.brand_name) &&
+            p.address.state === element &&
+            getList("city").includes(p.address.city)
+        )
+      );
+
+      // City
+    } else if (dropDownMenu.join() === cityList.join()) {
+      // update Filtered Product List
+      setFilteredProducts(
+        productList.filter(
+          (p) =>
+            brandList.includes(p.brand_name) &&
+            stateList.includes(p.address.state) &&
+            p.address.city === element
+        )
+      );
+    }
   }
 
   return (
@@ -70,32 +127,45 @@ const Home: NextPage<{ productList: product[] }> = ({ productList }) => {
             <div className={`${Styles.itemList} ${Styles.filtersItemList}`}>
               <div
                 className={`${Styles.filtersItem} ${Styles.item}`}
-                onClick={() => setFilteredList(filter("brand"))}
+                onClick={() => {
+                  setDropDownMenu(getList("brand"));
+                  setShowDropDown(true);
+                }}
               >
                 Products {downArrow}
               </div>
               <div
                 className={`${Styles.filtersItem} ${Styles.item}`}
-                onClick={() => setFilteredList(filter("state"))}
+                onClick={() => {
+                  setDropDownMenu(stateList);
+                  setShowDropDown(true);
+                }}
               >
                 State {downArrow}
               </div>
               <div
                 className={`${Styles.filtersItem} ${Styles.item}`}
-                onClick={() => setFilteredList(filter("city"))}
+                onClick={() => {
+                  setDropDownMenu(cityList);
+                  setShowDropDown(true);
+                }}
               >
                 City {downArrow}
               </div>
             </div>
             <Row
               className={`${Styles.itemsContainer} ${Styles.dropdownMenu}`}
-              style={{ display: filteredList.length > 0 ? "flex" : "none" }}
+              style={{ display: showDropDown ? "flex" : "none" }}
             >
-              {filteredList.length > 0 &&
-                filteredList.map((element) => (
+              {showDropDown &&
+                dropDownMenu.map((element) => (
                   <Col
                     key={element}
                     className={`${Styles.item} ${Styles.dropdownItem}`}
+                    onClick={() => {
+                      filter(element);
+                      setShowDropDown(false);
+                    }}
                   >
                     {element}
                   </Col>
@@ -107,11 +177,9 @@ const Home: NextPage<{ productList: product[] }> = ({ productList }) => {
             <div className={Styles.title}>Edvora</div>
             <div className={Styles.subHeading}>Products</div>
 
-            {filter("brand").map((brand) => (
-              <div key={brand}>
-                <Carousel productList={productList} brand={brand} />
-              </div>
-            ))}
+            {filteredProducts && (
+              <Carousel filteredProducts={filteredProducts} brandList={brandList} />
+            )}
           </Col>
         </Row>
       </Container>
