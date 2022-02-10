@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Stack } from "react-bootstrap";
-import { product } from "../../interfaces/interfaces";
-import Crs from "../../styles/Carousel.module.scss";
-import Styles from "../../styles/Index.module.scss";
+import { product } from "../interfaces/interfaces";
+import Crs from "../styles/Carousel.module.scss";
+import Styles from "../styles/Index.module.scss";
 
 export default function Carousel({
   filteredProducts,
@@ -13,7 +13,7 @@ export default function Carousel({
 }) {
   const [first, setFirst] = useState(0);
   const [second, setSecond] = useState(1);
-  const [displayedList, setDisplayedList] = useState([filteredProducts[first]]);
+  const [displayedList, setDisplayedList] = useState([filteredProducts[0]]);
 
   const [desktopView, setDesktopView] = useState(false);
 
@@ -21,7 +21,7 @@ export default function Carousel({
   useEffect(() => {
     if (window.matchMedia("(min-width: 1366px)").matches) {
       setDesktopView(true);
-      setDisplayedList([filteredProducts[first], filteredProducts[second]]);
+      setDisplayedList([filteredProducts[0], filteredProducts[1]]);
     }
   }, [desktopView]);
 

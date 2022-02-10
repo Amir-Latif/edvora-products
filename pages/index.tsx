@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Col, Container, Row, Stack } from "react-bootstrap";
 import { product } from "../interfaces/interfaces";
 import Styles from "../styles/Index.module.scss";
-import Carousel from "./components/Carousel";
+import Carousel from "../components/Carousel";
 
 const Home: NextPage<{ productList: product[] }> = ({ productList }) => {
   const downArrow = (
