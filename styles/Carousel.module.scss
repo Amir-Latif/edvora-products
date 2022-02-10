@@ -1,0 +1,78 @@
+.container {
+  height: 15em;
+  padding: 1.25em;
+  margin: 0.75em 0 2.8125em;
+  flex : 1 0 100%;
+  @media only screen and (min-width: 1366px) {
+    height: 12.875em;
+  }
+}
+
+.item {
+  flex: 1 0 13.8em;
+  height: 12em;
+  @media only screen and (min-width: 1366px) {
+    flex: 1 0 20em;
+    height: 10em;
+  }
+  display: grid;
+  grid-template-columns: 33% auto;
+  grid-column-gap: 1.25em;
+  grid-row-gap: 0.4em;
+  align-items: center;
+  margin-right: 1.25em;
+}
+
+.image {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 0.3125em;
+}
+
+.productName {
+  font-weight: 400;
+  font-size: 0.9375em;
+}
+
+.brandName {
+  color: rgba(255, 255, 255, 0.6);
+}
+.dollar {
+  font-weight: 600;
+  font-size: 1em;
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 0.2em;
+}
+
+.price {
+  font-weight: 400;
+  font-size: 0.8125em;
+}
+.location {
+  font-weight: normal;
+  font-size: 0.8125em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.date {
+  font-weight: normal;
+  font-size: 0.6875em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.dateValue {
+  font-weight: 500;
+  font-size: 0.8125em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.description {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  font-weight: normal;
+  font-size: 0.6875em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.rightArrow {
+  cursor: pointer;
+  margin-left: 2.25em;
+}
