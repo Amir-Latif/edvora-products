@@ -34,9 +34,6 @@ export default class Carousel extends Component<carouselProps, carouselState> {
     }
   }
 
-  componentWillReceiveProps(props : carouselProps) {
-    this.setState({filteredProducts : this.props.filteredProducts})
-  }
 
   render() {
     return (
