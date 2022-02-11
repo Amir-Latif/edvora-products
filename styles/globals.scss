@@ -9,6 +9,8 @@ body {
 
   background-color: #292929;
   font: SF Pro Display normal;
+  width: 85.375em;
+  height: 100vh;
 }
 
 a {
@@ -18,10 +20,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-.container {
-  @media (min-width: 1200px) {
-    max-width: initial !important;
-  }
 }

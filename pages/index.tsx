@@ -48,6 +48,7 @@ const Home: NextPage<{ productList: product[] }> = ({ productList }) => {
   }
 
   const [filteredProducts, setFilteredProducts] = useState(productList);
+
   const [brandList, setBrandList] = useState(getList("brand"));
   const [stateList, setStateList] = useState(getList("state"));
   const [cityList, setCityList] = useState(getList("city"));
@@ -118,8 +119,8 @@ const Home: NextPage<{ productList: product[] }> = ({ productList }) => {
         />{" "}
       </Head>
 
-      <Container className={Styles.container}>
-        <Row>
+      <div className={Styles.container}>
+        <Stack direction="horizontal" className={`align-items-start`}>
           <div
             className={`${Styles.itemsContainer} ${Styles.filtersContainer} col-1`}
           >
@@ -173,16 +174,21 @@ const Home: NextPage<{ productList: product[] }> = ({ productList }) => {
             </Row>
           </div>
 
-          <Col className={`${Styles.content} my-3 my-md-0`}>
+          <Stack className={`${Styles.content} my-3 my-md-0`}>
             <div className={Styles.title}>Edvora</div>
             <div className={Styles.subHeading}>Products</div>
 
-            {filteredProducts && (
-              <Carousel filteredProducts={filteredProducts} brandList={brandList} />
-            )}
-          </Col>
-        </Row>
-      </Container>
+            {brandList.map((brand) => (
+              <div key={brand}>
+                <Carousel
+                  filteredProducts={filteredProducts}
+                  brand={brand}
+                />
+              </div>
+            ))}
+          </Stack>
+        </Stack>
+      </div>
     </React.Fragment>
   );
 };

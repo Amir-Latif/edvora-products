@@ -1,18 +1,17 @@
 .container {
   height: 15em;
-  padding: 1.25em;
+  width: 100%;
   margin: 0.75em 0 2.8125em;
-  flex : 1 0 100%;
+  flex-grow: 1;
   @media only screen and (min-width: 1366px) {
     height: 12.875em;
   }
 }
 
 .item {
-  flex: 1 0 13.8em;
+  flex-grow: 1;
   height: 12em;
   @media only screen and (min-width: 1366px) {
-    flex: 1 0 20em;
     height: 10em;
   }
   display: grid;
