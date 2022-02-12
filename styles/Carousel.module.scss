@@ -1,6 +1,5 @@
 .container {
   height: 15em;
-  width: 100%;
   margin: 0.75em 0 2.8125em;
   flex-grow: 1;
   @media only screen and (min-width: 1366px) {
@@ -21,6 +20,16 @@
   align-items: center;
   margin-right: 1.25em;
 }
+
+.brand {
+  color: #fff;
+  padding-bottom: 0.25em;
+  font-size: 1.2em;
+  font-weight: 400;
+  border-bottom: solid 1px;
+  border-color: #cbcbcb;
+}
+
 
 .image {
   width: 70px;

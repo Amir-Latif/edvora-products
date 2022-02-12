@@ -119,7 +119,7 @@ const Home: NextPage<{ productList: product[] }> = ({ productList }) => {
         />{" "}
       </Head>
 
-      <div className={Styles.container}>
+      <div className={`${Styles.container} w-100`}>
         <Stack direction="horizontal" className={`align-items-start`}>
           <div
             className={`${Styles.itemsContainer} ${Styles.filtersContainer} col-1`}

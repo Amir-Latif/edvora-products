@@ -18,15 +18,14 @@ export default function Carousel({
   const [displayedList, setDisplayedList] = useState([products[0]]);
 
   useEffect(() => {
-    
     switch (products.length) {
       case 1:
         setDisplayedList([products[first]]);
         break;
-        case 2:
-          setDisplayedList([products[second], products[second]]);
-          break;
-          default:
+      case 2:
+        setDisplayedList([products[second], products[second]]);
+        break;
+      default:
         setDisplayedList([products[first], products[second], products[third]]);
         break;
     }
@@ -62,7 +61,7 @@ export default function Carousel({
   return (
     <Stack direction="horizontal">
       <Stack>
-        <div className={Styles.brand}>{brand}</div>
+        <div className={`${Crs.brand} w-100`}>{brand}</div>
         <div className={`${Styles.itemsContainer} ${Crs.container}`}>
           <Stack
             direction="horizontal"
